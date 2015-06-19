@@ -1,0 +1,20 @@
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://java.sun.com/xml/ns/persistence"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <persistence-unit name="Umtapo">
+        <!--<class>com.gorbash.umtapo.jpa.entities.Person</class>
+        <class>com.gorbash.umtapo.jpa.entities.Book</class>-->
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+            <property name="hibernate.connection.autocommit" value="true"/>
+
+            <!-- <property name="hibernate.hbm2ddl.auto" value="create"/>-->
+            <!-- <property name="hibernate.hbm2ddl.auto" value="validate"/> -->
+            <!--  <property name="hibernate.connection.driver_class" value="jstels.jdbc.mdb.MDBDriver2"/>
+              <property name="hibernate.connection.username" value=""/>
+              <property name="hibernate.connection.password" value=""/>
+              <property name="hibernate.connection.url" value="jdbc:jstels:mdb:Ksiazki.mdb"/>-->
+        </properties>
+    </persistence-unit>
+</persistence>

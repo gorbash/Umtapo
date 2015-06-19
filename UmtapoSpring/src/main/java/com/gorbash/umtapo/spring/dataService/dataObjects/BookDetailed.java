@@ -8,18 +8,18 @@ import java.util.List;
  */
 public class BookDetailed extends BookBrief{
 
-    private LocalDate creationDate;
+    private String creationDate;
 
-    public BookDetailed(long id, String title, List<AuthorBrief> authors, LocalDate creationDate) {
+    public BookDetailed(long id, String title, List<AuthorBrief> authors, String creationDate) {
         super(id, title, authors);
         this.creationDate = creationDate;
     }
 
-    public LocalDate getCreationDate() {
+    public String getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
+    public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
     }
 }

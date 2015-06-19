@@ -42,8 +42,8 @@ public class TestJPADataService {
         AuthorBrief groom = new AuthorBrief("Winston", "Groom");
         BookBrief bBook1 = new BookBrief(1, book1.getTitle(), Arrays.asList(tolkien));
         BookBrief bBook2 = new BookBrief(2, book2.getTitle(), Arrays.asList(groom));
-        BookDetailed dBook1 = new BookDetailed(book1.getId(), book1.getTitle(), Arrays.asList(tolkien), book1.getCreationTime());
-        BookDetailed dBook2 = new BookDetailed(book2.getId(), book2.getTitle(), Arrays.asList(groom), book2.getCreationTime());
+        BookDetailed dBook1 = new BookDetailed(book1.getId(), book1.getTitle(), Arrays.asList(tolkien), "2015-06-19");
+        BookDetailed dBook2 = new BookDetailed(book2.getId(), book2.getTitle(), Arrays.asList(groom), "2015-06-19");
 
 
         DataAccess da = new DataAccess() {

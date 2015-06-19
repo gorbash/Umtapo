@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -103,7 +104,7 @@ public class BookRestControllerTest {
     public void testThatRestHandleSingleBook() throws Exception {
         final String title = "test title";
         int id = 1;
-        dataService.setSingleBookBrief(Optional.of(new BookDetailed(id, title, asList(), LocalDate.now())));
+        dataService.setSingleBookBrief(Optional.of(new BookDetailed(id, title, asList(), "2015-06-19")));
         mockMvc.perform(get("/books/6")).andExpect(status().isOk()).andExpect(jsonPath("title", is(title)));
     }
 

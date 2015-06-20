@@ -3,6 +3,7 @@ package com.gorbash.umtapo.spring.dataService;
 import com.gorbash.umtapo.jpa.dataAccess.DataAccess;
 import com.gorbash.umtapo.jpa.entities.Book;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookBrief;
+import com.gorbash.umtapo.spring.dataService.dataObjects.BookDetailed;
 import com.gorbash.umtapo.spring.dataService.dataObjects.DataObjectFactory;
 import org.apache.log4j.Logger;
 
@@ -37,10 +38,8 @@ public class JPADataService implements DataService {
     }
 
     @Override
-    public Optional<BookBrief> getSingleBook(long id) {
+    public Optional<BookDetailed> getSingleBook(long id) {
         Optional<Book> bookOption = dataAccess.getBook(id);
         return bookOption.isPresent() ? of(objectFactory.createBookDetailed(bookOption.get())) : empty();
     }
-
-
 }

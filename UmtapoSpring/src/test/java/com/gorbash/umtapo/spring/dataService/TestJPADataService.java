@@ -3,20 +3,20 @@ package com.gorbash.umtapo.spring.dataService;
 import com.gorbash.umtapo.jpa.dataAccess.DataAccess;
 import com.gorbash.umtapo.jpa.entities.Author;
 import com.gorbash.umtapo.jpa.entities.Book;
-import com.gorbash.umtapo.spring.dataService.dataObjects.AuthorBrief;
+import com.gorbash.umtapo.spring.dataService.dataObjects.PersonBrief;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookBrief;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookDetailed;
 import com.gorbash.umtapo.spring.dataService.dataObjects.DataObjectFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
@@ -38,12 +38,12 @@ public class TestJPADataService {
         Author winston = new Author("Winston", "Groom");
         book1 = new Book("Forrest Gump", Arrays.asList(winston));
         book2 = new Book("Lord of the Rings", Arrays.asList(jrr));
-        AuthorBrief tolkien = new AuthorBrief("J.R.R", "Tolkien");
-        AuthorBrief groom = new AuthorBrief("Winston", "Groom");
+        PersonBrief tolkien = new PersonBrief(1, "J.R.R", "Tolkien");
+        PersonBrief groom = new PersonBrief(2, "Winston", "Groom");
         BookBrief bBook1 = new BookBrief(1, book1.getTitle(), Arrays.asList(tolkien));
         BookBrief bBook2 = new BookBrief(2, book2.getTitle(), Arrays.asList(groom));
-        BookDetailed dBook1 = new BookDetailed(book1.getId(), book1.getTitle(), Arrays.asList(tolkien), "2015-06-19");
-        BookDetailed dBook2 = new BookDetailed(book2.getId(), book2.getTitle(), Arrays.asList(groom), "2015-06-19");
+        BookDetailed dBook1 = new BookDetailed(book1.getId(), book1.getTitle(), Arrays.asList(tolkien));
+        BookDetailed dBook2 = new BookDetailed(book2.getId(), book2.getTitle(), Arrays.asList(groom));
 
 
         DataAccess da = new DataAccess() {
@@ -95,6 +95,7 @@ public class TestJPADataService {
     public void testThatServiceProvidesBookByID() throws Exception {
         assertThat(ds.getSingleBook(1).get().getTitle(), is("Forrest Gump"));
         assertThat(ds.getSingleBook(2).get().getTitle(), is("Lord of the Rings"));
+        assertThat(ds.getSingleBook(1).get().getLoans(), hasSize(0));
     }
 
     @Test

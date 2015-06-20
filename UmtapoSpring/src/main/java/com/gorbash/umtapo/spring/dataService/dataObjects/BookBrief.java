@@ -8,19 +8,19 @@ import java.util.List;
 public class BookBrief {
     private long id;
     private String title;
-    private List<AuthorBrief> authors;
+    private List<PersonBrief> authors;
 
     public BookBrief() {
 
     }
 
-    public BookBrief(long id, String title, List<AuthorBrief> authors) {
+    public BookBrief(long id, String title, List<PersonBrief> authors) {
         this.id = id;
         this.title = title;
         this.authors = authors;
     }
 
-    public List<AuthorBrief> getAuthors() {
+    public List<PersonBrief> getAuthors() {
         return authors;
     }
 
@@ -41,7 +41,7 @@ public class BookBrief {
                 '}';
     }
 
-    public void setAuthors(List<AuthorBrief> authors) {
+    public void setAuthors(List<PersonBrief> authors) {
         this.authors = authors;
     }
 

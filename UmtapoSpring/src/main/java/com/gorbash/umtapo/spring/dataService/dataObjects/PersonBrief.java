@@ -3,14 +3,16 @@ package com.gorbash.umtapo.spring.dataService.dataObjects;
 /**
  * Created by Gorbash on 2015-06-18.
  */
-public class AuthorBrief {
+public class PersonBrief {
 
+    private long id;
     private String lastName;
     private String firstName;
 
-    public AuthorBrief(String firstName, String lastName) {
+    public PersonBrief(long id, String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -29,10 +31,19 @@ public class AuthorBrief {
         this.lastName = lastName;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return "AuthorBrief{" +
+        return "PersonBrief{" +
                 "firstName='" + firstName + '\'' +
+                ", id=" + id +
                 ", lastName='" + lastName + '\'' +
                 '}';
     }

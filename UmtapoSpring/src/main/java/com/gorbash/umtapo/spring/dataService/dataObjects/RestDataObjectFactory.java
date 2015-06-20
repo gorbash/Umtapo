@@ -18,16 +18,16 @@ public class RestDataObjectFactory implements DataObjectFactory {
         return new BookBrief(book.getId(), book.getTitle(),mapAuthors(book.getAuthors()));
     }
 
-
-
     @Override
     public BookDetailed createBookDetailed(Book book) {
-        return new BookDetailed(book.getId(), book.getTitle(),mapAuthors(book.getAuthors()), getStringDateFromLocalDate(book.getCreationTime()));
+        BookDetailed result = new BookDetailed(book.getId(), book.getTitle(),mapAuthors(book.getAuthors()));
+        result.setCreationDate(getStringDateFromLocalDate(book.getCreationTime()));
+        return result;
     }
 
 
-    private List<AuthorBrief> mapAuthors(List<Author> authors) {
-        return authors.stream().map(a -> new AuthorBrief(a.getFirstName(), a.getLastName())).collect(Collectors.toList());
+    private List<PersonBrief> mapAuthors(List<Author> authors) {
+        return authors.stream().map(a -> new PersonBrief(a.getId(), a.getFirstName(), a.getLastName())).collect(Collectors.toList());
     }
 
     private String getStringDateFromLocalDate(LocalDate localDate) {

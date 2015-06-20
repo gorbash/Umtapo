@@ -1,9 +1,9 @@
 package com.gorbash.umtapo.spring.controller;
 
 import com.gorbash.umtapo.spring.Application;
-import com.gorbash.umtapo.spring.dataService.dataObjects.AuthorBrief;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookBrief;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookDetailed;
+import com.gorbash.umtapo.spring.dataService.dataObjects.PersonBrief;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -18,8 +18,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -79,19 +77,23 @@ public class BookRestControllerTest {
     @Test
     public void testThatRestHandlesBooks() throws Exception {
         final String title = "test title";
-        List<AuthorBrief> authors = asList(new AuthorBrief("firstName", "lastName"), new AuthorBrief("firstName2", "lastName2"));
-        int id = 1;
-        dataService.setBooksBrief(asList(new BookBrief(id, title, authors)));
+        int authorID1 = 11;
+        int authorID2 = 12;
+        List<PersonBrief> authors = asList(new PersonBrief(authorID1, "firstName", "lastName"), new PersonBrief(authorID2, "firstName2", "lastName2"));
+        int bookId = 1;
+        dataService.setBooksBrief(asList(new BookBrief(bookId, title, authors)));
         mockMvc.perform(get("/books"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].title", is(title)))
-                .andExpect(jsonPath("$[0].id", is(id)))
+                .andExpect(jsonPath("$[0].id", is(bookId)))
                 .andExpect(jsonPath("$[0].authors", hasSize(2)))
                 .andExpect(jsonPath("$[0].authors[0].firstName", is("firstName")))
                 .andExpect(jsonPath("$[0].authors[0].lastName", is("lastName")))
+                .andExpect(jsonPath("$[0].authors[0].id", is(11)))
                 .andExpect(jsonPath("$[0].authors[1].firstName", is("firstName2")))
-                .andExpect(jsonPath("$[0].authors[1].lastName", is("lastName2")));
+                .andExpect(jsonPath("$[0].authors[1].lastName", is("lastName2")))
+                .andExpect(jsonPath("$[0].authors[1].id", is(12)));
     }
 
     @Test
@@ -104,8 +106,15 @@ public class BookRestControllerTest {
     public void testThatRestHandleSingleBook() throws Exception {
         final String title = "test title";
         int id = 1;
-        dataService.setSingleBookBrief(Optional.of(new BookDetailed(id, title, asList(), "2015-06-19")));
-        mockMvc.perform(get("/books/6")).andExpect(status().isOk()).andExpect(jsonPath("title", is(title)));
+        String creationDate = "2015-06-19";
+        BookDetailed book = new BookDetailed(id, title, asList());
+        book.setCreationDate(creationDate);
+        dataService.setSingleBookBrief(Optional.of(book));
+        mockMvc.perform(get("/books/6"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("title", is(title)))
+                .andExpect(jsonPath("creationDate", is(creationDate)))
+                .andExpect(jsonPath("loans", hasSize(0)));
     }
 
     @Test

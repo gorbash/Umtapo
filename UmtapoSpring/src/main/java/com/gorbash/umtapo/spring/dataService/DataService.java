@@ -1,6 +1,7 @@
 package com.gorbash.umtapo.spring.dataService;
 
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookBrief;
+import com.gorbash.umtapo.spring.dataService.dataObjects.BookDetailed;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,5 +12,5 @@ import java.util.Optional;
  */
 public interface DataService {
     List<BookBrief> getBooksBrief();
-    Optional<BookBrief> getSingleBook(long id);
+    Optional<BookDetailed> getSingleBook(long id);
 }

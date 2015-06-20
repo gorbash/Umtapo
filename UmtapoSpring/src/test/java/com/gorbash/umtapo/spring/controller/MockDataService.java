@@ -2,6 +2,7 @@ package com.gorbash.umtapo.spring.controller;
 
 import com.gorbash.umtapo.spring.dataService.DataService;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookBrief;
+import com.gorbash.umtapo.spring.dataService.dataObjects.BookDetailed;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -19,7 +20,7 @@ public class MockDataService implements DataService {
     private static MockDataService instance;
 
     private List<BookBrief> bookBrief = asList();
-    private Optional<BookBrief> singleBookBrief;
+    private Optional<BookDetailed> singleBookBrief;
 
     private MockDataService() {
     }
@@ -34,11 +35,11 @@ public class MockDataService implements DataService {
     }
 
     @Override
-    public Optional<BookBrief> getSingleBook(long id) {
+    public Optional<BookDetailed> getSingleBook(long id) {
        return singleBookBrief;
     }
 
-    public void setSingleBookBrief(Optional<BookBrief> book) {
+    public void setSingleBookBrief(Optional<BookDetailed> book) {
         this.singleBookBrief = book;
     }
 

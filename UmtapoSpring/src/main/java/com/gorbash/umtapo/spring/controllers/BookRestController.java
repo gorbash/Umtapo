@@ -2,6 +2,7 @@ package com.gorbash.umtapo.spring.controllers;
 
 import com.gorbash.umtapo.spring.dataService.DataService;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookBrief;
+import com.gorbash.umtapo.spring.dataService.dataObjects.BookDetailed;
 import org.apache.log4j.Logger;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.ApplicationContext;
@@ -34,9 +35,9 @@ public class BookRestController {
     }
 
     @RequestMapping(value = "/{bookId}", method = RequestMethod.GET)
-    ResponseEntity<BookBrief> getBook(@PathVariable long bookId) {
+    ResponseEntity<BookDetailed> getBook(@PathVariable long bookId) {
         logger.info("GET book id: " + bookId);
-        Optional<BookBrief> quantumBook = dataService.getSingleBook(bookId);
+        Optional<BookDetailed> quantumBook = dataService.getSingleBook(bookId);
         return quantumBook.isPresent() ? new ResponseEntity<>(quantumBook.get(), HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 

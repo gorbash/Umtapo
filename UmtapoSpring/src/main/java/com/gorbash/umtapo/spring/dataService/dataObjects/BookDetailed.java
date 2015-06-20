@@ -1,6 +1,6 @@
 package com.gorbash.umtapo.spring.dataService.dataObjects;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,10 +9,11 @@ import java.util.List;
 public class BookDetailed extends BookBrief{
 
     private String creationDate;
+    private List<Loan> loans;
 
-    public BookDetailed(long id, String title, List<AuthorBrief> authors, String creationDate) {
+    public BookDetailed(long id, String title, List<PersonBrief> authors) {
         super(id, title, authors);
-        this.creationDate = creationDate;
+        loans = new ArrayList<>();
     }
 
     public String getCreationDate() {
@@ -21,5 +22,13 @@ public class BookDetailed extends BookBrief{
 
     public void setCreationDate(String creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
     }
 }

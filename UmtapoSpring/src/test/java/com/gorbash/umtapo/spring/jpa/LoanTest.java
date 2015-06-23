@@ -1,3 +1,5 @@
+package com.gorbash.umtapo.spring.jpa;
+
 import com.gorbash.umtapo.jpa.entities.Book;
 import com.gorbash.umtapo.jpa.entities.Borrower;
 import com.gorbash.umtapo.jpa.entities.Loan;

@@ -113,8 +113,7 @@ public class BookRestControllerTest {
         mockMvc.perform(get("/books/6"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("title", is(title)))
-                .andExpect(jsonPath("creationDate", is(creationDate)))
-                .andExpect(jsonPath("loans", hasSize(0)));
+                .andExpect(jsonPath("creationDate", is(creationDate)));
     }
 
     @Test

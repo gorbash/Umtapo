@@ -3,6 +3,7 @@ package com.gorbash.umtapo.spring.controllers;
 import com.gorbash.umtapo.spring.dataService.DataService;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookBrief;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookDetailed;
+import com.gorbash.umtapo.spring.dataService.dataObjects.PersonBrief;
 import org.apache.log4j.Logger;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.ApplicationContext;
@@ -47,4 +48,5 @@ public class BookRestController {
         book.setId(666);
         return new ResponseEntity<>(book, HttpStatus.OK);
     }
+
 }

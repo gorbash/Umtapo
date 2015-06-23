@@ -1,3 +1,5 @@
+package com.gorbash.umtapo.spring.jpa;
+
 import com.gorbash.umtapo.jpa.dataAccess.DataAccess;
 import com.gorbash.umtapo.jpa.dataAccess.HibernateDataAccess;
 import com.gorbash.umtapo.jpa.db.DBConfig;

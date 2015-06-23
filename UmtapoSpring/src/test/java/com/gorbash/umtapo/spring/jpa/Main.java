@@ -1,3 +1,5 @@
+package com.gorbash.umtapo.spring.jpa;
+
 import com.gorbash.umtapo.jpa.db.DBConfig;
 import com.gorbash.umtapo.jpa.db.DBSetup;
 

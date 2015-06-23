@@ -1,0 +1,69 @@
+/books/14
+{
+    "id": 14,
+    "title": "Snuff",
+    "authors": [
+        {
+            "id": 14,
+            "lastName": "Pratchett",
+            "firstName": "Terry"
+        }
+    ],
+    "creationDate": "2015-06-18",
+}
+
+
+
+/books
+
+[
+    {
+        "id": 16,
+        "title": "Long earth",
+        "authors": [
+            {
+                "id": 14,
+                "lastName": "Pratchett",
+                "firstName": "Terry"
+            },
+            {
+                "id": 16,
+                "lastName": "Baxter",
+                "firstName": "Stephen"
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "title": "Mars",
+        "authors": [
+            {
+                "id": 13,
+                "lastName": "Kosik",
+                "firstName": "Rafał"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "title": "Potomstwo",
+        "authors": [
+            {
+                "id": 15,
+                "lastName": "Ketchum",
+                "firstName": "Jack"
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "title": "Snuff",
+        "authors": [
+            {
+                "id": 14,
+                "lastName": "Pratchett",
+                "firstName": "Terry"
+            }
+        ]
+    }
+]

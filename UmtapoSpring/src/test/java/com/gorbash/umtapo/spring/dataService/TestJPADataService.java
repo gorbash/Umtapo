@@ -95,7 +95,6 @@ public class TestJPADataService {
     public void testThatServiceProvidesBookByID() throws Exception {
         assertThat(ds.getSingleBook(1).get().getTitle(), is("Forrest Gump"));
         assertThat(ds.getSingleBook(2).get().getTitle(), is("Lord of the Rings"));
-        assertThat(ds.getSingleBook(1).get().getLoans(), hasSize(0));
     }
 
     @Test

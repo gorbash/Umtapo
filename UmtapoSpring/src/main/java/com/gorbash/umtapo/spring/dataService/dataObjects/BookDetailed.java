@@ -9,11 +9,9 @@ import java.util.List;
 public class BookDetailed extends BookBrief{
 
     private String creationDate;
-    private List<Loan> loans;
 
     public BookDetailed(long id, String title, List<PersonBrief> authors) {
         super(id, title, authors);
-        loans = new ArrayList<>();
     }
 
     public String getCreationDate() {
@@ -24,11 +22,4 @@ public class BookDetailed extends BookBrief{
         this.creationDate = creationDate;
     }
 
-    public List<Loan> getLoans() {
-        return loans;
-    }
-
-    public void setLoans(List<Loan> loans) {
-        this.loans = loans;
-    }
 }

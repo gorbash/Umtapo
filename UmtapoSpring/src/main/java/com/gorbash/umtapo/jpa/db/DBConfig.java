@@ -1,14 +1,21 @@
 package com.gorbash.umtapo.jpa.db;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by GorbasH on 2014-09-20.
  */
+@Component
 public class DBConfig {
 
-    public static final String DEFAULT_URL = "jdbc:hsqldb:file:testdb";
+    public static final String TEST_URL = "jdbc:hsqldb:file:testdb";
+    public static final String DEFAULT_URL = "jdbc:hsqldb:hsql://localhost/";
     public static final String DEFAULT_DRIVER = "org.hsqldb.jdbc.JDBCDriver";
     public static final String DEFAULT_USER = "SA";
     public static final String DEFAULT_PASSWORD = "";
@@ -21,11 +28,8 @@ public class DBConfig {
     private Map<String, String> additionalProperties;
 
 
-    public DBConfig() {
-        this(DEFAULT_URL);
-    }
-
-    public DBConfig(String url) {
+    @Autowired
+    public DBConfig(@Value("${jdbc.url}") String url) {
         this(DEFAULT_USER, DEFAULT_PASSWORD, DEFAULT_DRIVER, url);
     }
 

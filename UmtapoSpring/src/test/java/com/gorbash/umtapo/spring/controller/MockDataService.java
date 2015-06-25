@@ -14,7 +14,6 @@ import static java.util.Arrays.asList;
 /**
  * Created by Gorbash on 2015-06-15.
  */
-@Service
 public class MockDataService implements DataService {
 
     private static MockDataService instance;
@@ -22,7 +21,7 @@ public class MockDataService implements DataService {
     private List<BookBrief> bookBrief = asList();
     private Optional<BookDetailed> singleBookBrief;
 
-    private MockDataService() {
+    public MockDataService() {
     }
 
     @Override
@@ -46,11 +45,5 @@ public class MockDataService implements DataService {
     public void reset() {
         bookBrief = asList();
         singleBookBrief = Optional.empty();
-    }
-
-    public synchronized static MockDataService create() {
-        if (instance == null)
-            instance = new MockDataService();
-        return instance;
     }
 }

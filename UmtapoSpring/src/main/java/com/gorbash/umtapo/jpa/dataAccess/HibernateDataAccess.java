@@ -4,6 +4,9 @@ import com.gorbash.umtapo.jpa.db.DBSetup;
 import com.gorbash.umtapo.jpa.entities.Author;
 import com.gorbash.umtapo.jpa.entities.Book;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -17,11 +20,13 @@ import static java.util.Optional.of;
 /**
  * Created by Gorbash on 2015-06-09.
  */
+@Component
 public class HibernateDataAccess implements DataAccess {
     private final Logger log = Logger.getLogger(HibernateDataAccess.class);
     private DBSetup dbSetup;
     private EntityManager em;
 
+    @Autowired
     public HibernateDataAccess(DBSetup dbSetup) {
         log.info("Hibernate Data Access created");
         this.dbSetup = checkNotNull(dbSetup);

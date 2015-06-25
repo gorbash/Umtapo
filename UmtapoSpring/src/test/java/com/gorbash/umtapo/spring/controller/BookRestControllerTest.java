@@ -1,6 +1,7 @@
 package com.gorbash.umtapo.spring.controller;
 
 import com.gorbash.umtapo.spring.Application;
+import com.gorbash.umtapo.spring.controllers.BookRestController;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookBrief;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookDetailed;
 import com.gorbash.umtapo.spring.dataService.dataObjects.PersonBrief;
@@ -11,14 +12,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import static java.util.Arrays.asList;
@@ -42,13 +46,13 @@ public class BookRestControllerTest {
 
     private MockMvc mockMvc;
 
-    @Autowired()
+    @Autowired
     private WebApplicationContext webApplicationContext;
 
     private HttpMessageConverter mappingJackson2HttpMessageConverter;
 
 
-    private MockDataService dataService = MockDataService.create();
+    private MockDataService dataService = new MockDataService();
 
     @Autowired
     void setConverters(HttpMessageConverter<?>[] converters) {
@@ -63,6 +67,9 @@ public class BookRestControllerTest {
     @Before
     public void setUp() throws Exception {
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
+        BookRestController bookRestController = (BookRestController)webApplicationContext.getBean("bookRestController");
+        bookRestController.setDataService(dataService);
+
         dataService.reset();
     }
 

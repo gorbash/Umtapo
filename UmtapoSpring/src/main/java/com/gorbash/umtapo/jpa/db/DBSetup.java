@@ -1,6 +1,9 @@
 package com.gorbash.umtapo.jpa.db;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,6 +14,7 @@ import java.util.Map;
 /**
  * Created by GorbasH on 2014-09-20.
  */
+@Component
 public class DBSetup {
 
 
@@ -20,6 +24,7 @@ public class DBSetup {
     private EntityManager em;
 
 
+    @Autowired
     public DBSetup(DBConfig config) {
         setupDB(config);
     }

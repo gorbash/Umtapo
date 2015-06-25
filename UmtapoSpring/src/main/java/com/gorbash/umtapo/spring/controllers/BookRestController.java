@@ -1,12 +1,15 @@
 package com.gorbash.umtapo.spring.controllers;
 
 import com.gorbash.umtapo.spring.dataService.DataService;
+import com.gorbash.umtapo.spring.dataService.JPADataService;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookBrief;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookDetailed;
 import com.gorbash.umtapo.spring.dataService.dataObjects.PersonBrief;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,15 +22,20 @@ import java.util.Optional;
  * Created by Gorbash on 2015-06-15.
  */
 @RestController
-@SpringApplicationConfiguration(locations = "classpath:/configuration.xml")
+@SpringApplicationConfiguration
+@ComponentScan(basePackages = {"com.gorbash.umtapo"})
 @RequestMapping("/books")
 public class BookRestController {
+
     private final Logger logger = Logger.getLogger(BookRestController.class);
 
-    private ApplicationContext context =
-            new ClassPathXmlApplicationContext(new String[]{"configuration.xml"});
+    private DataService dataService;
 
-    private DataService dataService = context.getBean("dataService", DataService.class);
+    @Autowired
+    public void setDataService(DataService dataService) {
+        logger.info("Setting up data service: " + dataService);
+        this.dataService = dataService;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     ResponseEntity<List<BookBrief>> getBooks() {

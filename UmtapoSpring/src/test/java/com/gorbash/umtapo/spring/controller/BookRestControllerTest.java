@@ -15,6 +15,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -42,6 +43,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
+@ActiveProfiles("test")
 public class BookRestControllerTest {
 
     private MockMvc mockMvc;
@@ -52,7 +54,8 @@ public class BookRestControllerTest {
     private HttpMessageConverter mappingJackson2HttpMessageConverter;
 
 
-    private MockDataService dataService = new MockDataService();
+    @Autowired
+    private MockDataService dataService;
 
     @Autowired
     void setConverters(HttpMessageConverter<?>[] converters) {
@@ -67,9 +70,6 @@ public class BookRestControllerTest {
     @Before
     public void setUp() throws Exception {
         this.mockMvc = webAppContextSetup(webApplicationContext).build();
-        BookRestController bookRestController = (BookRestController)webApplicationContext.getBean("bookRestController");
-        bookRestController.setDataService(dataService);
-
         dataService.reset();
     }
 

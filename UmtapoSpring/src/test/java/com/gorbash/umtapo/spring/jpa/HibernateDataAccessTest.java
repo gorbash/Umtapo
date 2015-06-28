@@ -4,12 +4,19 @@ import com.gorbash.umtapo.jpa.dataAccess.DataAccess;
 import com.gorbash.umtapo.jpa.dataAccess.HibernateDataAccess;
 import com.gorbash.umtapo.jpa.db.DBConfig;
 import com.gorbash.umtapo.jpa.db.DBSetup;
+import com.gorbash.umtapo.jpa.db.URLProvider;
 import com.gorbash.umtapo.jpa.entities.Author;
 import com.gorbash.umtapo.jpa.entities.Book;
+import com.gorbash.umtapo.spring.Application;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.persistence.EntityManager;
 import java.util.Optional;
@@ -21,16 +28,20 @@ import static org.junit.Assert.assertThat;
 /**
  * Created by Gorbash on 2015-06-09.
  */
+/*@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {Application.class})
+@ActiveProfiles(profiles = {"test"})*/
 public class HibernateDataAccessTest {
 
     private static DataAccess da;
     private static DBSetup setup;
     private Book mars;
 
+    private static DBConfig config;
+
     @BeforeClass
     public static void beforeClass() throws Exception {
-        DBConfig config = new DBConfig("jdbc:hsqldb:file:testdb");
-        //config = new DBConfig("jdbc:hsqldb:hsql://localhost/");
+        config = new DBConfig("jdbc:hsqldb:file:testdb");
         config.addProperty("hibernate.hbm2ddl.auto", "create");
         setup = new DBSetup(config);
         da = new HibernateDataAccess(setup);
@@ -40,11 +51,11 @@ public class HibernateDataAccessTest {
         return setup.getEM();
     }
 
-    private static void commitTransaction() {
+    private static void txCommit() {
         setup.getEM().getTransaction().commit();
     }
 
-    private static void startTransaction() {
+    private static void txStart() {
         setup.getEM().getTransaction().begin();
     }
 
@@ -80,10 +91,10 @@ public class HibernateDataAccessTest {
         Book longEarth = new Book("Long earth", asList(pratchett, baxter));
 
 
-        startTransaction();
+        txStart();
         persist(kosik, pratchett, ketchum, baxter);
         persist(mars, snuff, potomstwo, longEarth);
-        commitTransaction();
+        txCommit();
     }
 
     @Before

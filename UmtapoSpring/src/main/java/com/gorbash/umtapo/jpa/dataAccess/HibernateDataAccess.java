@@ -5,6 +5,7 @@ import com.gorbash.umtapo.jpa.entities.Author;
 import com.gorbash.umtapo.jpa.entities.Book;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 

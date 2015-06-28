@@ -11,7 +11,6 @@ import java.util.Optional;
 /**
  * Created by Gorbash on 2015-06-09.
  */
-@Component
 public interface DataAccess {
     List<Book> getBooks();
 

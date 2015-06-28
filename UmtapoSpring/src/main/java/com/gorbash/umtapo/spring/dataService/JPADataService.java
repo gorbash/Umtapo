@@ -7,6 +7,7 @@ import com.gorbash.umtapo.spring.dataService.dataObjects.BookDetailed;
 import com.gorbash.umtapo.spring.dataService.dataObjects.DataObjectFactory;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import static java.util.Optional.of;
  * Created by Gorbash on 2015-06-09.
  */
 @Service
+@Profile("prod")
 public class JPADataService implements DataService {
 
     private final Logger logger = Logger.getLogger(JPADataService.class);

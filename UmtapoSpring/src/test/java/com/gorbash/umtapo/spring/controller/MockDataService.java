@@ -3,9 +3,8 @@ package com.gorbash.umtapo.spring.controller;
 import com.gorbash.umtapo.spring.dataService.DataService;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookBrief;
 import com.gorbash.umtapo.spring.dataService.dataObjects.BookDetailed;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +13,7 @@ import static java.util.Arrays.asList;
 /**
  * Created by Gorbash on 2015-06-15.
  */
+@Component
 public class MockDataService implements DataService {
 
     private static MockDataService instance;
@@ -22,6 +22,7 @@ public class MockDataService implements DataService {
     private Optional<BookDetailed> singleBookBrief;
 
     public MockDataService() {
+        System.out.println("MockDataService()");
     }
 
     @Override

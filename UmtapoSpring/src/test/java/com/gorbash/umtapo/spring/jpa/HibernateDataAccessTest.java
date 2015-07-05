@@ -28,20 +28,18 @@ import static org.junit.Assert.assertThat;
 /**
  * Created by Gorbash on 2015-06-09.
  */
-/*@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {Application.class})
-@ActiveProfiles(profiles = {"test"})*/
 public class HibernateDataAccessTest {
 
     private static DataAccess da;
     private static DBSetup setup;
     private Book mars;
 
+
     private static DBConfig config;
 
     @BeforeClass
     public static void beforeClass() throws Exception {
-        config = new DBConfig("jdbc:hsqldb:file:testdb");
+        config = new DBConfig(URLProvider.TEST_URL);
         config.addProperty("hibernate.hbm2ddl.auto", "create");
         setup = new DBSetup(config);
         da = new HibernateDataAccess(setup);

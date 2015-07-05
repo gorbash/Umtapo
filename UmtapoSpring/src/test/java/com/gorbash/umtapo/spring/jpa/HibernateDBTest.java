@@ -2,6 +2,7 @@ package com.gorbash.umtapo.spring.jpa;
 
 import com.gorbash.umtapo.jpa.db.DBConfig;
 import com.gorbash.umtapo.jpa.db.DBSetup;
+import com.gorbash.umtapo.jpa.db.URLProvider;
 import com.gorbash.umtapo.jpa.entities.*;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -26,9 +27,7 @@ public class HibernateDBTest {
 
     @BeforeClass
     public static void setup() {
-        DBConfig config = new DBConfig("jdbc:hsqldb:file:testdb");
-        //config = new DBConfig("jdbc:hsqldb:hsql://localhost/");
-
+        DBConfig config = new DBConfig(URLProvider.TEST_URL);
         config.addProperty("hibernate.hbm2ddl.auto", "create");
         em = new DBSetup(config).getEM();
     }

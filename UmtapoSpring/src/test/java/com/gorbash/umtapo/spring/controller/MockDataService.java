@@ -22,7 +22,6 @@ public class MockDataService implements DataService {
     private Optional<BookDetailed> singleBookBrief;
 
     public MockDataService() {
-        System.out.println("MockDataService()");
     }
 
     @Override
